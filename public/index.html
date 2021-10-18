@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Contacts</title>
+</head>
+<body>
+
+Please Enter: <br>
+<br>
+<input type="text" id="FirstName"   placeholder="First Name"><br>
+<input type="text" id="LastName"    placeholder="Last Name"><br>
+<input type="text" id="Email"       placeholder="Email"><br>
+<input type="text" id="PhoneNumber" placeholder="Phone Number"><br>
+<input type="text" id="University"  placeholder="University"><br>
+<input type="text" id="Major"       placeholder="Major"><br>
+<br>
+<button onclick="addContact()">Submit</button> 
+</div>
+
+</body>
+<script>
+function addContact(){
+   var FirstName   = document.getElementById('FirstName').value;
+   var LastName    = document.getElementById('LastName').value;
+   var Email       = document.getElementById('Email').value;
+   var PhoneNumber = document.getElementById('PhoneNumber').value;
+   var University  = document.getElementById('University').value;
+   var Major       = document.getElementById('Major').value;
+
+   console.log(FirstName); console.log(LastName);
+
+   var url = `/random?FirstName=${FirstName}&LastName=${LastName}&Email=${Email}&PhoneNumber=${PhoneNumber}&University=${University}&Major=${Major}`;
+
+   superagent
+       .get(url)
+       .end(function(err, res){
+           if (err) {
+               console.log('err:',err);
+           } else {
+               console.log('response:',res.text);
+           }
+       });
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+</html>
